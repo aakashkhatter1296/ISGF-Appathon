@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -35,9 +37,10 @@ import java.util.ArrayList;
 public class Home extends Fragment {
     String url = "http://iot.net.in/smartmeter/support/slice_iota.php";
     JSONArray js;
-    LineChart chart;
+    LineChart chart,humidityChart;
     ArrayList<String> xAxis;
     Task mTask;
+    ProgressBar loadingSpinner;
 
     public Home() {
         // Required empty public constructor
@@ -69,10 +72,14 @@ public class Home extends Fragment {
             xAxis.add("j" + i);
         }
         chart = (LineChart) rootView.findViewById(R.id.chart1);
+        humidityChart = (LineChart) rootView.findViewById(R.id.chart2);
+        loadingSpinner = (ProgressBar)rootView.findViewById(R.id.loadingSpinner);
 
         //data = new LineData(xAxis, dataset);
         chart.setData(new LineData());
-        chart.setDescription("# of times Alice called Bob");
+        chart.setDescription("Variation of temperature with time");
+        humidityChart.setData(new LineData());
+        humidityChart.setDescription("Variation of humidity with time");
         /*LineData data = new LineData(xAxis, dataset);
         chart.setData(data);
         chart.setDescription("# of times Alice called Bob");*/
@@ -84,30 +91,53 @@ public class Home extends Fragment {
         Log.d("joydeep", String.valueOf(js));
 
         LineData data = chart.getData();
+        LineData humidityData = humidityChart.getData();
+
+        if (data != null) {
+            loadingSpinner.setVisibility(View.GONE);
+            chart.setVisibility(View.VISIBLE);
+        }
+        if(humidityData != null) {
+            humidityChart.setVisibility(View.VISIBLE);
+        }
 
         ILineDataSet set = data.getDataSetByIndex(0);
+        ILineDataSet humiditySet = humidityData.getDataSetByIndex(0);
         // set.addEntry(...); // can be called as well
 
         if (set == null) {
             set = createSet();
             data.addDataSet(set);
         }
-        for (int j = 0; j < js.length(); j++) {
-            try {
+        if(humiditySet == null) {
+            humiditySet = createSet();
+            humidityData.addDataSet(humiditySet);
+        }
+        try {
+            for (int j = 0; j < js.length(); j++) {
+
                 data.addXValue(String.valueOf(j));
                 //data.addEntry(new Entry((float) (Math.random() * 40) + 30f, set.getEntryCount()), 0);
-                data.addEntry(new Entry((float) js.getJSONObject(j).getDouble("a_current"), set.getEntryCount()), 0);
-                chart.notifyDataSetChanged();
-            } catch (JSONException e) {
-                e.printStackTrace();
+                data.addEntry(new Entry((float) js.getJSONObject(j).getInt("temp"), set.getEntryCount()), 0);
+                humidityData.addXValue(String.valueOf(j));
+                //data.addEntry(new Entry((float) (Math.random() * 40) + 30f, set.getEntryCount()), 0);
+                humidityData.addEntry(new Entry((float) js.getJSONObject(j).getInt("humidity"), set.getEntryCount()), 0);
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
+        chart.notifyDataSetChanged();
+
         //dataset = new LineDataSet(js, "# of Calls");
         //data = new LineData(xAxis, dataset);
         //chart.setData(data);
-        chart.notifyDataSetChanged();
         chart.setVisibleXRangeMaximum(10);
         chart.moveViewToX(data.getXValCount() - 11);
+
+        humidityChart.notifyDataSetChanged();
+        humidityChart.setVisibleXRangeMaximum(10);
+        humidityChart.moveViewToX(data.getXValCount() - 11);
 
     }
 
@@ -176,7 +206,6 @@ public class Home extends Fragment {
                                         entries.add(new Entry((float) js.getJSONObject(j).getDouble("a_current"), j));
                                     }*/
                                     updateData(js);
-
                                     Log.d("aakash", "" + js);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -189,6 +218,10 @@ public class Home extends Fragment {
                         error.printStackTrace();
                     }
                 });
+                jsonArrRequest.setRetryPolicy(new DefaultRetryPolicy(
+                        150000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 queue.add(jsonArrRequest);
                 try {
                     Thread.sleep(5000);
@@ -196,21 +229,6 @@ public class Home extends Fragment {
                     e.printStackTrace();
                 }
             }
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
         }
     }
 
@@ -225,7 +243,7 @@ public class Home extends Fragment {
     public void onStop() {
         super.onStop();
         //check the state of the task
-        if(mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING)
+        if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING)
             mTask.cancel(true);
     }
 }
