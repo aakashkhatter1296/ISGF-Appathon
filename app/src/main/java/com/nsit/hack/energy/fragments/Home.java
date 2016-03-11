@@ -25,7 +25,6 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.nsit.hack.energy.R;
-import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,7 +37,7 @@ import java.util.ArrayList;
 public class Home extends Fragment {
     String url = "http://iot.net.in/smartmeter/support/slice_iota.php";
     JSONArray js;
-    LineChart chart;
+    LineChart chart,humidityChart;
     ArrayList<String> xAxis;
     Task mTask;
     ProgressBar loadingSpinner;
@@ -73,11 +72,14 @@ public class Home extends Fragment {
             xAxis.add("j" + i);
         }
         chart = (LineChart) rootView.findViewById(R.id.chart1);
+        humidityChart = (LineChart) rootView.findViewById(R.id.chart2);
         loadingSpinner = (ProgressBar)rootView.findViewById(R.id.loadingSpinner);
 
         //data = new LineData(xAxis, dataset);
         chart.setData(new LineData());
-        chart.setDescription("# of times Alice called Bob");
+        chart.setDescription("Variation of temperature with time");
+        humidityChart.setData(new LineData());
+        humidityChart.setDescription("Variation of humidity with time");
         /*LineData data = new LineData(xAxis, dataset);
         chart.setData(data);
         chart.setDescription("# of times Alice called Bob");*/
@@ -89,18 +91,27 @@ public class Home extends Fragment {
         Log.d("joydeep", String.valueOf(js));
 
         LineData data = chart.getData();
+        LineData humidityData = humidityChart.getData();
 
         if (data != null) {
             loadingSpinner.setVisibility(View.GONE);
             chart.setVisibility(View.VISIBLE);
         }
+        if(humidityData != null) {
+            humidityChart.setVisibility(View.VISIBLE);
+        }
 
         ILineDataSet set = data.getDataSetByIndex(0);
+        ILineDataSet humiditySet = humidityData.getDataSetByIndex(0);
         // set.addEntry(...); // can be called as well
 
         if (set == null) {
             set = createSet();
             data.addDataSet(set);
+        }
+        if(humiditySet == null) {
+            humiditySet = createSet();
+            humidityData.addDataSet(humiditySet);
         }
         try {
             for (int j = 0; j < js.length(); j++) {
@@ -108,17 +119,25 @@ public class Home extends Fragment {
                 data.addXValue(String.valueOf(j));
                 //data.addEntry(new Entry((float) (Math.random() * 40) + 30f, set.getEntryCount()), 0);
                 data.addEntry(new Entry((float) js.getJSONObject(j).getInt("temp"), set.getEntryCount()), 0);
+                humidityData.addXValue(String.valueOf(j));
+                //data.addEntry(new Entry((float) (Math.random() * 40) + 30f, set.getEntryCount()), 0);
+                humidityData.addEntry(new Entry((float) js.getJSONObject(j).getInt("humidity"), set.getEntryCount()), 0);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         chart.notifyDataSetChanged();
+
         //dataset = new LineDataSet(js, "# of Calls");
         //data = new LineData(xAxis, dataset);
         //chart.setData(data);
         chart.setVisibleXRangeMaximum(10);
         chart.moveViewToX(data.getXValCount() - 11);
+
+        humidityChart.notifyDataSetChanged();
+        humidityChart.setVisibleXRangeMaximum(10);
+        humidityChart.moveViewToX(data.getXValCount() - 11);
 
     }
 
