@@ -1,5 +1,6 @@
 package com.nsit.hack.energy.fragments;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,9 +16,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 import com.nsit.hack.energy.R;
 
 import org.json.JSONArray;
@@ -67,7 +71,7 @@ public class Home extends Fragment {
         }
         chart = (LineChart) rootView.findViewById(R.id.chart1);
 
-        data = new LineData(xAxis, dataset);
+        //data = new LineData(xAxis, dataset);
         chart.setData(new LineData());
         chart.setDescription("# of times Alice called Bob");
         /*LineData data = new LineData(xAxis, dataset);
@@ -78,14 +82,52 @@ public class Home extends Fragment {
         return rootView;
     }
 
-    private void updateData(ArrayList js) {
+    private void updateData(JSONArray js) {
         Log.d("joydeep", String.valueOf(js));
+
         LineData data = chart.getData();
-        dataset = new LineDataSet(js, "# of Calls");
+
+        ILineDataSet set = data.getDataSetByIndex(0);
+        // set.addEntry(...); // can be called as well
+
+        if (set == null) {
+            set = createSet();
+            data.addDataSet(set);
+        }
+        ArrayList entries = new ArrayList<>();
+        for (int j = 0; j < js.length(); j++) {
+            try {
+                data.addXValue(String.valueOf(j));
+                //data.addEntry(new Entry((float) (Math.random() * 40) + 30f, set.getEntryCount()), 0);
+                data.addEntry(new Entry((float) js.getJSONObject(j).getDouble("a_current"), set.getEntryCount()), 0);
+                chart.notifyDataSetChanged();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        //dataset = new LineDataSet(js, "# of Calls");
         //data = new LineData(xAxis, dataset);
-        chart.setData(data);
+        //chart.setData(data);
         chart.notifyDataSetChanged();
     }
+
+    private LineDataSet createSet() {
+
+        LineDataSet set = new LineDataSet(null, "Dynamic Data");
+        set.setAxisDependency(YAxis.AxisDependency.LEFT);
+        set.setColor(ColorTemplate.getHoloBlue());
+        set.setCircleColor(Color.WHITE);
+        set.setLineWidth(2f);
+        set.setCircleRadius(4f);
+        set.setFillAlpha(65);
+        set.setFillColor(ColorTemplate.getHoloBlue());
+        set.setHighLightColor(Color.rgb(244, 117, 117));
+        set.setValueTextColor(Color.WHITE);
+        set.setValueTextSize(9f);
+        set.setDrawValues(false);
+        return set;
+    }
+
 
     private class Task extends AsyncTask<Void, Void, Void> {
         RequestQueue queue;
@@ -129,11 +171,11 @@ public class Home extends Fragment {
                             public void onResponse(String response) {
                                 try {
                                     js = new JSONArray(response);
-                                    ArrayList entries = new ArrayList<>();
+                                    /*ArrayList entries = new ArrayList<>();
                                     for (int j = 0; j < js.length(); j++) {
                                         entries.add(new Entry((float) js.getJSONObject(j).getDouble("a_current"), j));
-                                    }
-                                    updateData(entries);
+                                    }*/
+                                    updateData(js);
 
                                     Log.d("aakash", "" + js);
                                 } catch (JSONException e) {
