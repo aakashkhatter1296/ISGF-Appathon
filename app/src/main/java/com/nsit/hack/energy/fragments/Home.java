@@ -33,7 +33,7 @@ import java.util.ArrayList;
  * Created by joydeep on 7/3/16.
  */
 public class Home extends Fragment {
-    String url = "http://10.0.0.3:8000/";
+    String url = "http://iot.net.in/smartmeter/support/slice_iota.php";
     JSONArray js;
     LineChart chart;
     ArrayList<String> xAxis;
