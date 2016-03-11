@@ -33,12 +33,11 @@ import java.util.ArrayList;
  * Created by joydeep on 7/3/16.
  */
 public class Home extends Fragment {
-    String url = "http://10.0.0.4:8000/";
+    String url = "http://10.0.0.3:8000/";
     JSONArray js;
     LineChart chart;
     ArrayList<String> xAxis;
-    LineDataSet dataset;
-    LineData data;
+    Task mTask;
 
     public Home() {
         // Required empty public constructor
@@ -77,8 +76,7 @@ public class Home extends Fragment {
         /*LineData data = new LineData(xAxis, dataset);
         chart.setData(data);
         chart.setDescription("# of times Alice called Bob");*/
-        Task mTask = new Task();
-        mTask.execute();
+
         return rootView;
     }
 
@@ -94,7 +92,6 @@ public class Home extends Fragment {
             set = createSet();
             data.addDataSet(set);
         }
-        ArrayList entries = new ArrayList<>();
         for (int j = 0; j < js.length(); j++) {
             try {
                 data.addXValue(String.valueOf(j));
@@ -109,6 +106,9 @@ public class Home extends Fragment {
         //data = new LineData(xAxis, dataset);
         //chart.setData(data);
         chart.notifyDataSetChanged();
+        chart.setVisibleXRangeMaximum(10);
+        chart.moveViewToX(data.getXValCount() - 11);
+
     }
 
     private LineDataSet createSet() {
@@ -214,4 +214,18 @@ public class Home extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mTask = new Task();
+        mTask.execute();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //check the state of the task
+        if(mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING)
+            mTask.cancel(true);
+    }
 }
