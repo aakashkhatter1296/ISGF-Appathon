@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:checked="true"
+            android:icon="@drawable/ic_menu_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_scheduler"
+            android:icon="@drawable/ic_menu_scheduler"
+            android:title="Scheduler" />
+        <item
+            android:id="@+id/nav_power"
+            android:icon="@drawable/ic_menu_power"
+            android:title="Power Monitor" />
+        <item
+            android:id="@+id/nav_geofencing"
+            android:icon="@drawable/ic_menu_geofencing"
+            android:title="Geofencing" />
+        <item
+            android:id="@+id/nav_weather"
+            android:icon="@drawable/ic_menu_weather"
+            android:title="Weather Awareness" />
+        <item
+            android:id="@+id/nav_hotspot"
+            android:icon="@drawable/ic_menu_hotspot"
+            android:title="Hotspot" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Settings" />
+    </group>
+
+    <!--<item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>-->
+
+</menu>
