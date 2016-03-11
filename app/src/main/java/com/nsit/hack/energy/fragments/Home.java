@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -23,6 +25,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.nsit.hack.energy.R;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +41,7 @@ public class Home extends Fragment {
     LineChart chart;
     ArrayList<String> xAxis;
     Task mTask;
+    ProgressBar loadingSpinner;
 
     public Home() {
         // Required empty public constructor
@@ -69,6 +73,7 @@ public class Home extends Fragment {
             xAxis.add("j" + i);
         }
         chart = (LineChart) rootView.findViewById(R.id.chart1);
+        loadingSpinner = (ProgressBar)rootView.findViewById(R.id.loadingSpinner);
 
         //data = new LineData(xAxis, dataset);
         chart.setData(new LineData());
@@ -85,6 +90,11 @@ public class Home extends Fragment {
 
         LineData data = chart.getData();
 
+        if (data != null) {
+            loadingSpinner.setVisibility(View.GONE);
+            chart.setVisibility(View.VISIBLE);
+        }
+
         ILineDataSet set = data.getDataSetByIndex(0);
         // set.addEntry(...); // can be called as well
 
@@ -92,20 +102,21 @@ public class Home extends Fragment {
             set = createSet();
             data.addDataSet(set);
         }
-        for (int j = 0; j < js.length(); j++) {
-            try {
+        try {
+            for (int j = 0; j < js.length(); j++) {
+
                 data.addXValue(String.valueOf(j));
                 //data.addEntry(new Entry((float) (Math.random() * 40) + 30f, set.getEntryCount()), 0);
-                data.addEntry(new Entry((float) js.getJSONObject(j).getDouble("a_current"), set.getEntryCount()), 0);
-                chart.notifyDataSetChanged();
-            } catch (JSONException e) {
-                e.printStackTrace();
+                data.addEntry(new Entry((float) js.getJSONObject(j).getInt("temp"), set.getEntryCount()), 0);
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
+        chart.notifyDataSetChanged();
         //dataset = new LineDataSet(js, "# of Calls");
         //data = new LineData(xAxis, dataset);
         //chart.setData(data);
-        chart.notifyDataSetChanged();
         chart.setVisibleXRangeMaximum(10);
         chart.moveViewToX(data.getXValCount() - 11);
 
@@ -176,7 +187,6 @@ public class Home extends Fragment {
                                         entries.add(new Entry((float) js.getJSONObject(j).getDouble("a_current"), j));
                                     }*/
                                     updateData(js);
-
                                     Log.d("aakash", "" + js);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -189,6 +199,10 @@ public class Home extends Fragment {
                         error.printStackTrace();
                     }
                 });
+                jsonArrRequest.setRetryPolicy(new DefaultRetryPolicy(
+                        150000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 queue.add(jsonArrRequest);
                 try {
                     Thread.sleep(5000);
@@ -196,21 +210,6 @@ public class Home extends Fragment {
                     e.printStackTrace();
                 }
             }
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
         }
     }
 
@@ -225,7 +224,7 @@ public class Home extends Fragment {
     public void onStop() {
         super.onStop();
         //check the state of the task
-        if(mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING)
+        if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING)
             mTask.cancel(true);
     }
 }
