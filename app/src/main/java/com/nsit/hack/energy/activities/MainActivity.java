@@ -20,6 +20,7 @@ import com.nsit.hack.energy.fragments.PowerMonitor;
 import com.nsit.hack.energy.fragments.Scheduler;
 import com.nsit.hack.energy.fragments.Settings;
 import com.nsit.hack.energy.fragments.Weather;
+import com.pushbots.push.Pushbots;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Pushbots.sharedInstance().init(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
