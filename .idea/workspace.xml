@@ -9,10 +9,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fc7a7cd0-2855-41a7-9583-e0852289d402" name="Default" comment="Root Chart implemented">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/fragments/Home.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/fragments/Home.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="fc7a7cd0-2855-41a7-9583-e0852289d402" name="Default" comment="" />
     <ignored path="HackNSIT.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,20 +36,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Home.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Home.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/fragments/Home.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.0274314">
-              <caret line="238" column="44" selection-start-line="238" selection-start-column="44" selection-end-line="238" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="25" column="71" selection-start-line="25" selection-start-column="71" selection-end-line="25" selection-end-column="71" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RootDetailActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RootDetailActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/activities/RootDetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="4.8478804">
               <caret line="136" column="61" selection-start-line="136" selection-start-column="61" selection-end-line="136" selection-end-column="61" />
               <folding>
                 <element signature="e#4174#5058#0" expanded="true" />
@@ -2527,7 +2524,13 @@
       <option name="project" value="LOCAL" />
       <updated>1457811643949</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fixed home.java">
+      <created>1457811897269</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1457811897269</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2556,7 +2559,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33749026" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33749026" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -2617,7 +2620,8 @@
     <MESSAGE value="added temperature chart" />
     <MESSAGE value="implemented geofencing" />
     <MESSAGE value="Root Chart implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Root Chart implemented" />
+    <MESSAGE value="fixed home.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed home.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -3041,9 +3045,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/activities/RootDetailActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/fragments/Home.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="71" selection-start-line="25" selection-start-column="71" selection-end-line="25" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/activities/RootDetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.8478804">
           <caret line="136" column="61" selection-start-line="136" selection-start-column="61" selection-end-line="136" selection-end-column="61" />
           <folding>
             <element signature="e#4174#5058#0" expanded="true" />
@@ -3051,14 +3063,6 @@
             <element signature="e#5060#5351#0" expanded="true" />
             <element signature="e#5350#5351#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/fragments/Home.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0274314">
-          <caret line="238" column="44" selection-start-line="238" selection-start-column="44" selection-end-line="238" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
