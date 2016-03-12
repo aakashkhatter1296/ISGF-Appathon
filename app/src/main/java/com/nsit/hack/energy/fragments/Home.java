@@ -76,7 +76,7 @@ public class Home extends Fragment {
         loadingSpinner = (ProgressBar)rootView.findViewById(R.id.loadingSpinner);
 
         //data = new LineData(xAxis, dataset);
-        chart.setData(new LineData());
+        //chart.setData(new LineData());
         chart.setDescription("Variation of temperature with time");
         humidityChart.setData(new LineData());
         humidityChart.setDescription("Variation of humidity with time");
