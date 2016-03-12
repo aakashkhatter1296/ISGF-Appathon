@@ -46,6 +46,7 @@ public class RootDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
 
         requestQueue = VolleySingleton.getmInstance().getRequestQueue();
@@ -117,11 +118,11 @@ public class RootDetailActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
 
-            jsonArrRequest.setRetryPolicy(new DefaultRetryPolicy(
-                    20000,
-                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            jsonArrRequest.setShouldCache(false);
+//            jsonArrRequest.setRetryPolicy(new DefaultRetryPolicy(
+//                    20000,
+//                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+//                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+//            jsonArrRequest.setShouldCache(false);
 
             while (true) {
 

@@ -68,6 +68,7 @@
 
         <activity
             android:name=".activities.RootDetailActivity"
+            android:parentActivityName=".activities.MainActivity"
             android:label="@string/title_activity_root_detail"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

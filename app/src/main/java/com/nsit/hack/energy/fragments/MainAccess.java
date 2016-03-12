@@ -3,6 +3,7 @@ package com.nsit.hack.energy.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,11 +54,13 @@ public class MainAccess extends Fragment {
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://"+ipAddr.getText()+"/set.php?name=relay&val=0", new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.v("MAIN-ACCESS","Response"+response);
                         Toast.makeText(App.getAppContext(),"Response: "+response,Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        Log.v("MAIN-ACCESS","Response"+error);
                         Toast.makeText(App.getAppContext(),"Error: "+error.toString(),Toast.LENGTH_SHORT).show();
                     }
                 });
