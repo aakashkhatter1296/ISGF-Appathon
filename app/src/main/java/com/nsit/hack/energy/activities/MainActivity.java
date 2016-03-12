@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import com.nsit.hack.energy.R;
 import com.nsit.hack.energy.fragments.Geofencing;
 import com.nsit.hack.energy.fragments.Hotspot;
+import com.nsit.hack.energy.fragments.MainAccess;
+import com.nsit.hack.energy.fragments.PhysicalConditions;
 import com.nsit.hack.energy.fragments.PowerMonitor;
 import com.nsit.hack.energy.fragments.Root;
 import com.nsit.hack.energy.fragments.Scheduler;
@@ -99,11 +101,13 @@ public class MainActivity extends AppCompatActivity
             setTitle("Power Monitor");
             newFragment = new PowerMonitor();
         } else if (id == R.id.nav_geofencing) {
-            setTitle("Geofencing");
-            newFragment = new Geofencing();
+//            setTitle("Geofencing");
+//            newFragment = new Geofencing();
+            setTitle("Main Access");
+            newFragment = new MainAccess();
         } else if (id == R.id.nav_weather) {
-            setTitle("Weather");
-            newFragment = new Weather();
+            setTitle("Physical Conditions");
+            newFragment = new PhysicalConditions();
         } else if (id == R.id.nav_hotspot) {
             setTitle("Hotspot");
             newFragment = new Hotspot();

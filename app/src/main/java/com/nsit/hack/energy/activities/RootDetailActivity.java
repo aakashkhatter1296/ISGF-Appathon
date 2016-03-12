@@ -24,6 +24,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.nsit.hack.energy.R;
+import com.nsit.hack.energy.network.VolleySingleton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,12 +39,16 @@ public class RootDetailActivity extends AppCompatActivity {
     Task mTask;
     ProgressBar loadingSpinner;
 
+    RequestQueue requestQueue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        requestQueue = VolleySingleton.getmInstance().getRequestQueue();
 
         xAxis = new ArrayList<>(); //x
         for (int i = 0; i < 10; i++) {
@@ -52,6 +57,7 @@ public class RootDetailActivity extends AppCompatActivity {
         chart = (LineChart) findViewById(R.id.chart1);
         loadingSpinner = (ProgressBar) findViewById(R.id.loadingSpinner);
         chart.setData(new LineData());
+
         //chart.setDescription("Variation of temperature with time");
 
 
@@ -106,7 +112,6 @@ public class RootDetailActivity extends AppCompatActivity {
     }
 
     private class Task extends AsyncTask<Void, Void, Void> {
-        RequestQueue queue;
         StringRequest jsonArrRequest;
 
         @Override
@@ -119,7 +124,7 @@ public class RootDetailActivity extends AppCompatActivity {
             jsonArrRequest.setShouldCache(false);
 
             while (true) {
-                queue = Volley.newRequestQueue(RootDetailActivity.this);
+
                 jsonArrRequest = new StringRequest(Request.Method.GET,
                         url,
                         new Response.Listener<String>() {
@@ -150,7 +155,7 @@ public class RootDetailActivity extends AppCompatActivity {
                         150000,
                         DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                queue.add(jsonArrRequest);
+                requestQueue.add(jsonArrRequest);
                 try {
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {
