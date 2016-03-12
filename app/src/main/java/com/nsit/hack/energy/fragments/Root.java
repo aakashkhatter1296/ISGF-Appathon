@@ -1,6 +1,6 @@
 package com.nsit.hack.energy.fragments;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +14,7 @@ import com.nsit.hack.energy.RecyclerItemClickListener;
 import com.nsit.hack.energy.RootAdapter;
 import com.nsit.hack.energy.RootItem;
 import com.nsit.hack.energy.SpaceItemDecorator;
+import com.nsit.hack.energy.activities.RootDetailActivity;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,9 @@ public class Root extends Fragment implements RecyclerItemClickListener.OnItemCl
 
     @Override
     public void onItemClick(View childView, int position) {
-
+        Intent intent = new Intent(getActivity(), RootDetailActivity.class);
+        intent.putExtra("position", position);
+        startActivity(intent);
     }
 
     @Override

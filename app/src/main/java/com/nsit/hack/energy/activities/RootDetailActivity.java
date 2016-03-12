@@ -1,14 +1,12 @@
-
-package com.nsit.hack.energy.fragments;
+package com.nsit.hack.energy.activities;
 
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -32,120 +30,61 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
-
-/**
- * Created by joydeep on 7/3/16.
- */
-
-public class Home extends Fragment {
+public class RootDetailActivity extends AppCompatActivity {
     String url = "http://iot.net.in/smartmeter/support/slice_iota.php";
     JSONArray js;
-    LineChart chart, humidityChart;
+    LineChart chart;
     ArrayList<String> xAxis;
     Task mTask;
     ProgressBar loadingSpinner;
 
-    public Home() {
-        // Required empty public constructor
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
-/*ArrayList<Entry> entries = new ArrayList<>(); //y
-        entries.add(new Entry(4f, 0));
-        entries.add(new Entry(8f, 1));
-        entries.add(new Entry(6f, 2));
-        entries.add(new Entry(12f, 3));
-        entries.add(new Entry(18f, 4));
-        entries.add(new Entry(9f, 5));
-        dataset = new LineDataSet(entries, "# of Calls");
-        dataset.setColor(Color.RED);
-        dataset.setCircleColor(Color.RED);*//*
-
-        */
-/*ArrayList<String> xAxis = new ArrayList<String>(); //x
-        xAxis.add("January");
-        xAxis.add("February");
-        xAxis.add("March");
-        xAxis.add("April");
-        xAxis.add("May");
-        xAxis.add("June");*/
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_root_detail);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         xAxis = new ArrayList<>(); //x
         for (int i = 0; i < 10; i++) {
             xAxis.add("j" + i);
         }
-        chart = (LineChart) rootView.findViewById(R.id.chart1);
-        loadingSpinner = (ProgressBar) rootView.findViewById(R.id.loadingSpinner);
-
-        //data = new LineData(xAxis, dataset);
-        //chart.setData(new LineData());
-        chart.setDescription("Variation of temperature with time");
-        humidityChart.setData(new LineData());
-        humidityChart.setDescription("Variation of humidity with time");
-
-        /*LineData data = new LineData(xAxis, dataset);
-        chart.setData(data);
-        chart.setDescription("# of times Alice called Bob");*/
+        chart = (LineChart) findViewById(R.id.chart1);
+        loadingSpinner = (ProgressBar) findViewById(R.id.loadingSpinner);
+        chart.setData(new LineData());
+        //chart.setDescription("Variation of temperature with time");
 
 
-        return rootView;
     }
 
     private void updateData(JSONArray js) {
         Log.d("joydeep", String.valueOf(js));
 
         LineData data = chart.getData();
-        LineData humidityData = humidityChart.getData();
 
         if (data != null) {
             loadingSpinner.setVisibility(View.GONE);
             chart.setVisibility(View.VISIBLE);
         }
-        if (humidityData != null) {
-            humidityChart.setVisibility(View.VISIBLE);
-        }
-
         ILineDataSet set = data.getDataSetByIndex(0);
-        ILineDataSet humiditySet = humidityData.getDataSetByIndex(0);
-        // set.addEntry(...); // can be called as well
 
         if (set == null) {
             set = createSet();
             data.addDataSet(set);
         }
-        if (humiditySet == null) {
-            humiditySet = createSet();
-            humidityData.addDataSet(humiditySet);
-        }
         try {
             for (int j = 0; j < js.length(); j++) {
 
                 data.addXValue(String.valueOf(j));
-                //data.addEntry(new Entry((float) (Math.random() * 40) + 30f, set.getEntryCount()), 0);
                 data.addEntry(new Entry((float) js.getJSONObject(j).getInt("temp"), set.getEntryCount()), 0);
-                humidityData.addXValue(String.valueOf(j));
-                //data.addEntry(new Entry((float) (Math.random() * 40) + 30f, set.getEntryCount()), 0);
-                humidityData.addEntry(new Entry((float) js.getJSONObject(j).getInt("humidity"), set.getEntryCount()), 0);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         chart.notifyDataSetChanged();
-
-        //dataset = new LineDataSet(js, "# of Calls");
-        //data = new LineData(xAxis, dataset);
-        //chart.setData(data);
         chart.setVisibleXRangeMaximum(10);
         chart.moveViewToX(data.getXValCount() - 11);
-
-        humidityChart.notifyDataSetChanged();
-        humidityChart.setVisibleXRangeMaximum(10);
-        humidityChart.moveViewToX(data.getXValCount() - 11);
 
     }
 
@@ -166,7 +105,6 @@ public class Home extends Fragment {
         return set;
     }
 
-
     private class Task extends AsyncTask<Void, Void, Void> {
         RequestQueue queue;
         StringRequest jsonArrRequest;
@@ -174,38 +112,14 @@ public class Home extends Fragment {
         @Override
         protected Void doInBackground(Void... params) {
 
-/*Log.v("Async====", "DoInBAckground...");
-            queue = Volley.newRequestQueue(getActivity());
-            jsonArrRequest = new StringRequest(Request.Method.GET,
-                    url,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Log.v("Async====", "onResponse...");
-                            try {
-                                js = new JSONArray(response);
-                                Log.d("aakash", "" + js);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.d("HackEditor", "Error: " + error.getMessage());
-                    error.printStackTrace();
-                }
-            });*/
-
-
-//            jsonArrRequest.setRetryPolicy(new DefaultRetryPolicy(
-//                    20000,
-//                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//            jsonArrRequest.setShouldCache(false);
+            jsonArrRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    20000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            jsonArrRequest.setShouldCache(false);
 
             while (true) {
-                queue = Volley.newRequestQueue(getActivity());
+                queue = Volley.newRequestQueue(RootDetailActivity.this);
                 jsonArrRequest = new StringRequest(Request.Method.GET,
                         url,
                         new Response.Listener<String>() {
@@ -214,10 +128,10 @@ public class Home extends Fragment {
                                 try {
                                     js = new JSONArray(response);
 
-                                    ArrayList entries = new ArrayList<>();
-                                    for (int j = 0; j < js.length(); j++) {
-                                        entries.add(new Entry((float) js.getJSONObject(j).getDouble("a_current"), j));
-                                    }
+//                                    ArrayList entries = new ArrayList<>();
+//                                    for (int j = 0; j < js.length(); j++) {
+//                                        entries.add(new Entry((float) js.getJSONObject(j).getDouble("a_current"), j));
+//                                    }
 
                                     updateData(js);
                                     Log.d("aakash", "" + js);
@@ -260,4 +174,5 @@ public class Home extends Fragment {
         if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING)
             mTask.cancel(true);
     }
+
 }

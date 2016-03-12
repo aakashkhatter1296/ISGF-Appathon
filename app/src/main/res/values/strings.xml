@@ -35,4 +35,7 @@
     <string name="unknown_geofence_transition">Unknown Transition</string>
 
     <string name="geofence_transition_notification_text">Click notification to return to app</string>
+    <string name="title_activity_animaiton_test">AnimaitonTestActivity</string>
+    <string name="title_activity_called">CalledActivity</string>
+    <string name="title_activity_root_detail">RootDetailActivity</string>
 </resources>
