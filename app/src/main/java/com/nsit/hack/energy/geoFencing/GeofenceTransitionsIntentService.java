@@ -1,4 +1,4 @@
-package com.nsit.hack.energy;
+package com.nsit.hack.energy.geoFencing;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -14,8 +14,8 @@ import android.util.Log;
 
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
+import com.nsit.hack.energy.R;
 import com.nsit.hack.energy.activities.MainActivity;
-import com.nsit.hack.energy.fragments.GeofenceErrorMessages;
 
 import java.util.ArrayList;
 import java.util.List;

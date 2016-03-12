@@ -4,7 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.github.mikephil.charting.charts.LineChart
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp" />
+
+    <!--<com.github.mikephil.charting.charts.LineChart
         android:id="@+id/chart1"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -16,9 +22,9 @@
         android:layout_height="200dp"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/chart1"
-        android:visibility="gone" />
+        android:visibility="gone" />-->
 
-    <ProgressBar
+    <!--<ProgressBar
         android:id="@+id/loadingSpinner"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="64dp"
@@ -26,6 +32,6 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:indeterminate="true"
-        android:visibility="visible" />
+        android:visibility="visible" />-->
 
 </RelativeLayout>

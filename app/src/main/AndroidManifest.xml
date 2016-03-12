@@ -54,7 +54,7 @@
         </receiver>
         <receiver android:name="com.pushbots.push.DefaultPushHandler" />
         <service android:name="com.pushbots.push.GCMIntentService" />
-        <service android:name=".GeofenceTransitionsIntentService" />
+        <service android:name=".geoFencing.GeofenceTransitionsIntentService" />
 
 
     </application>

@@ -14,9 +14,9 @@ import android.view.MenuItem;
 
 import com.nsit.hack.energy.R;
 import com.nsit.hack.energy.fragments.Geofencing;
-import com.nsit.hack.energy.fragments.Home;
 import com.nsit.hack.energy.fragments.Hotspot;
 import com.nsit.hack.energy.fragments.PowerMonitor;
+import com.nsit.hack.energy.fragments.Root;
 import com.nsit.hack.energy.fragments.Scheduler;
 import com.nsit.hack.energy.fragments.Settings;
 import com.nsit.hack.energy.fragments.Weather;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame, new Home()).commit();
+        transaction.replace(R.id.content_frame, new Root()).commit();
         setTitle("Home");
 
     }
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             setTitle("Home");
-            newFragment = new Home();
+            newFragment = new Root();
         } else if (id == R.id.nav_scheduler) {
             setTitle("Scheduler");
             newFragment = new Scheduler();

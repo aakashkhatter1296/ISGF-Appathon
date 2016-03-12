@@ -24,7 +24,9 @@ import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
-import com.nsit.hack.energy.GeofenceTransitionsIntentService;
+import com.nsit.hack.energy.geoFencing.Constants;
+import com.nsit.hack.energy.geoFencing.GeofenceErrorMessages;
+import com.nsit.hack.energy.geoFencing.GeofenceTransitionsIntentService;
 import com.nsit.hack.energy.R;
 
 import java.util.ArrayList;

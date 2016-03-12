@@ -1,4 +1,4 @@
-package com.nsit.hack.energy.fragments;
+package com.nsit.hack.energy.geoFencing;
 
 import android.content.Context;
 import android.content.res.Resources;

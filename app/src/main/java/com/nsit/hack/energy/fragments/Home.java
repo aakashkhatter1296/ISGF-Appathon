@@ -1,3 +1,4 @@
+/*
 package com.nsit.hack.energy.fragments;
 
 import android.graphics.Color;
@@ -31,9 +32,11 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
+*/
 /**
  * Created by joydeep on 7/3/16.
- */
+ *//*
+
 public class Home extends Fragment {
     String url = "http://iot.net.in/smartmeter/support/slice_iota.php";
     JSONArray js;
@@ -50,7 +53,8 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-        /*ArrayList<Entry> entries = new ArrayList<>(); //y
+        */
+/*ArrayList<Entry> entries = new ArrayList<>(); //y
         entries.add(new Entry(4f, 0));
         entries.add(new Entry(8f, 1));
         entries.add(new Entry(6f, 2));
@@ -59,14 +63,17 @@ public class Home extends Fragment {
         entries.add(new Entry(9f, 5));
         dataset = new LineDataSet(entries, "# of Calls");
         dataset.setColor(Color.RED);
-        dataset.setCircleColor(Color.RED);*/
-        /*ArrayList<String> xAxis = new ArrayList<String>(); //x
+        dataset.setCircleColor(Color.RED);*//*
+
+        */
+/*ArrayList<String> xAxis = new ArrayList<String>(); //x
         xAxis.add("January");
         xAxis.add("February");
         xAxis.add("March");
         xAxis.add("April");
         xAxis.add("May");
-        xAxis.add("June");*/
+        xAxis.add("June");*//*
+
         xAxis = new ArrayList<>(); //x
         for (int i = 0; i < 10; i++) {
             xAxis.add("j" + i);
@@ -80,9 +87,11 @@ public class Home extends Fragment {
         chart.setDescription("Variation of temperature with time");
         humidityChart.setData(new LineData());
         humidityChart.setDescription("Variation of humidity with time");
-        /*LineData data = new LineData(xAxis, dataset);
+        */
+/*LineData data = new LineData(xAxis, dataset);
         chart.setData(data);
-        chart.setDescription("# of times Alice called Bob");*/
+        chart.setDescription("# of times Alice called Bob");*//*
+
 
         return rootView;
     }
@@ -165,7 +174,8 @@ public class Home extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            /*Log.v("Async====", "DoInBAckground...");
+            */
+/*Log.v("Async====", "DoInBAckground...");
             queue = Volley.newRequestQueue(getActivity());
             jsonArrRequest = new StringRequest(Request.Method.GET,
                     url,
@@ -186,12 +196,15 @@ public class Home extends Fragment {
                     Log.d("HackEditor", "Error: " + error.getMessage());
                     error.printStackTrace();
                 }
-            });*/
-            /*jsonArrRequest.setRetryPolicy(new DefaultRetryPolicy(
+            });*//*
+
+            */
+/*jsonArrRequest.setRetryPolicy(new DefaultRetryPolicy(
                     20000,
                     DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                     DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-            jsonArrRequest.setShouldCache(false);*/
+            jsonArrRequest.setShouldCache(false);*//*
+
             while (true) {
                 queue = Volley.newRequestQueue(getActivity());
                 jsonArrRequest = new StringRequest(Request.Method.GET,
@@ -201,10 +214,12 @@ public class Home extends Fragment {
                             public void onResponse(String response) {
                                 try {
                                     js = new JSONArray(response);
-                                    /*ArrayList entries = new ArrayList<>();
+                                    */
+/*ArrayList entries = new ArrayList<>();
                                     for (int j = 0; j < js.length(); j++) {
                                         entries.add(new Entry((float) js.getJSONObject(j).getDouble("a_current"), j));
-                                    }*/
+                                    }*//*
+
                                     updateData(js);
                                     Log.d("aakash", "" + js);
                                 } catch (JSONException e) {
@@ -246,4 +261,4 @@ public class Home extends Fragment {
         if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING)
             mTask.cancel(true);
     }
-}
+}*/
