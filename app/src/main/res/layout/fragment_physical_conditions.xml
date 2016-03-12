@@ -65,7 +65,6 @@
                     android:text="Physical conditions inside home..."
                     android:id="@+id/bookmark_item_url"
                     android:layout_marginStart="8dp"
-
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="0dp"
                     android:layout_toRightOf="@+id/bookmark_item_initial"
