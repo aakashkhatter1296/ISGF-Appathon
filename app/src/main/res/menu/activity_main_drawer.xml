@@ -11,18 +11,18 @@
             android:id="@+id/nav_devices"
             android:icon="@drawable/ic_devices_24dp"
             android:title="Devices" />
-        <item
-            android:id="@+id/nav_scheduler"
-            android:icon="@drawable/ic_menu_scheduler"
-            android:title="Scheduler" />
-        <item
-            android:id="@+id/nav_power"
-            android:icon="@drawable/ic_menu_power"
-            android:title="Power Monitor" />
+        <!--<item-->
+            <!--android:id="@+id/nav_scheduler"-->
+            <!--android:icon="@drawable/ic_menu_scheduler"-->
+            <!--android:title="Scheduler" />-->
+        <!--<item-->
+            <!--android:id="@+id/nav_power"-->
+            <!--android:icon="@drawable/ic_menu_power"-->
+            <!--android:title="Power Monitor" />-->
         <item
             android:id="@+id/nav_geofencing"
             android:icon="@drawable/ic_menu_geofencing"
-            android:title="Geofencing" />
+            android:title="Location based power switching." />
         <item
             android:id="@+id/nav_main_access"
             android:icon="@drawable/ic_key"
@@ -30,7 +30,7 @@
         <item
             android:id="@+id/nav_weather"
             android:icon="@drawable/ic_menu_weather"
-            android:title="Weather Awareness" />
+            android:title="Climatic Condition" />
 
         <item
             android:id="@+id/nav_hotspot"

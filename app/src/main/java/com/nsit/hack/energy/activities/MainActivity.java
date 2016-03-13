@@ -98,13 +98,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_devices) {
             setTitle("Devices");
             newFragment = new Devices();
-        } else if (id == R.id.nav_scheduler) {
-            setTitle("Scheduler");
-            newFragment = new Scheduler();
-        } else if (id == R.id.nav_power) {
-            setTitle("Power Monitor");
-            newFragment = new PowerMonitor();
-        } else if (id == R.id.nav_geofencing) {
+//        } else if (id == R.id.nav_scheduler) {
+//            setTitle("Scheduler");
+//            newFragment = new Scheduler();
+//        } else if (id == R.id.nav_power) {
+//            setTitle("Power Monitor");
+//            newFragment = new PowerMonitor();
+//        } else if (id == R.id.nav_geofencing) {
             setTitle("Geofencing");
             newFragment = new Geofencing();
 //            setTitle("Main Access");
