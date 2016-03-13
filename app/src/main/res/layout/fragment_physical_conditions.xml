@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,75 +12,97 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:clickable="true"
                 android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardCornerRadius="3dp"
+                android:clickable="true"
+                card_view:cardUseCompatPadding="true"
                 card_view:cardElevation="3dp"
-                android:id="@+id/temperature_card"
-                card_view:cardUseCompatPadding="true">
+                card_view:cardCornerRadius="3dp" >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingEnd="8dp"
-                    android:paddingStart="8dp">
-
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
                     <ImageView
-                        android:id="@+id/temperature_icon"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:layout_marginTop="10dp"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true"
-                        android:layout_marginTop="10dp"
                         android:background="@drawable/ic_home_24dp"
                         android:backgroundTint="@color/colorAccent"
                         android:gravity="center"
+                        android:id="@+id/bookmark_item_initial"
                         android:textColor="#ffffff"
                         android:textSize="24dp" />
 
                     <TextView
-                        android:id="@+id/temperature_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_toEndOf="@+id/temperature_icon"
-                        android:layout_toRightOf="@+id/temperature_icon"
-                        android:singleLine="true"
-                        android:text="Temperature"
                         android:textAppearance="?android:attr/textAppearanceListItem"
-                        android:textSize="24dp" />
+                        android:text="Home"
+                        android:id="@+id/bookmark_item_title"
+                        android:textSize="24dp"
+                        android:singleLine="true"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_toEndOf="@+id/bookmark_item_initial"
+                        android:layout_toRightOf="@+id/bookmark_item_initial" />
 
                     <TextView
-                        android:id="@+id/temperature_inside"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/temperature_title"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_toRightOf="@+id/temperature_icon"
+                        android:textSize="14sp"
                         android:singleLine="true"
-                        android:text="Inside home :"
-                        android:textColor="@android:color/tertiary_text_dark"
                         android:textColorLink="@android:color/tertiary_text_dark"
+                        android:textColor="@android:color/tertiary_text_dark"
+                        android:text="Physical conditions inside home..."
+                        android:id="@+id/bookmark_item_url"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_toRightOf="@+id/bookmark_item_initial"
 
-                        android:textSize="14sp" />
+                        android:layout_below="@+id/bookmark_item_title" />
 
 
-                    <TextView
-                        android:id="@+id/temperature_outside"
-                        android:layout_width="wrap_content"
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/temperature_inside"
-                        android:layout_alignStart="@+id/temperature_inside"
-                        android:layout_below="@+id/temperature_inside"
-                        android:text="Outside home :" />
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginBottom="10dp"
+                        android:layout_below="@+id/bookmark_item_initial"
+                        >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="20px"
+                            android:text="Temp: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:layout_marginLeft="20dp"
+                            android:text="Humidity: "/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20px"
+                            android:layout_marginLeft="20dp"
+                            android:text="Ambient Light: "/>
+                    </LinearLayout>
 
 
                 </RelativeLayout>
@@ -89,157 +110,6 @@
 
             </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:id="@+id/humidity_card"
-                android:layout_height="150dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardCornerRadius="3dp"
-                card_view:cardElevation="3dp"
-                card_view:cardUseCompatPadding="true">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingEnd="8dp"
-                    android:paddingStart="8dp">
-
-                    <ImageView
-                        android:id="@+id/humidity_icon"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/ic_home_24dp"
-                        android:backgroundTint="@color/colorAccent"
-                        android:gravity="center"
-                        android:textColor="#ffffff"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/humidity_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_toEndOf="@+id/humidity_icon"
-                        android:layout_toRightOf="@+id/humidity_icon"
-                        android:singleLine="true"
-                        android:text="Humidity"
-                        android:textAppearance="?android:attr/textAppearanceListItem"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/humidity_inside"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/humidity_title"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_toRightOf="@+id/humidity_icon"
-                        android:singleLine="true"
-                        android:text="Inside home :"
-                        android:textColor="@android:color/tertiary_text_dark"
-                        android:textColorLink="@android:color/tertiary_text_dark"
-
-                        android:textSize="14sp" />
-
-
-                    <TextView
-                        android:id="@+id/humidity_outside"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/humidity_inside"
-                        android:layout_alignStart="@+id/humidity_inside"
-                        android:layout_below="@+id/humidity_inside"
-                        android:text="Outside home :" />
-
-
-                </RelativeLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:id="@+id/ambient_light_card"
-                android:layout_height="150dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                card_view:cardCornerRadius="3dp"
-                card_view:cardElevation="3dp"
-                card_view:cardUseCompatPadding="true">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingEnd="8dp"
-                    android:paddingStart="8dp">
-
-                    <ImageView
-                        android:id="@+id/ambient_light_icon"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/ic_ambient_light"
-                        android:backgroundTint="@color/colorAccent"
-                        android:gravity="center"
-                        android:textColor="#ffffff"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/ambient_light_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_toEndOf="@+id/ambient_light_icon"
-                        android:layout_toRightOf="@+id/ambient_light_icon"
-                        android:singleLine="true"
-                        android:text="Ambient Light"
-                        android:textAppearance="?android:attr/textAppearanceListItem"
-                        android:textSize="24dp" />
-
-                    <TextView
-                        android:id="@+id/ambient_light_inside"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ambient_light_title"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_toRightOf="@+id/ambient_light_icon"
-                        android:singleLine="true"
-                        android:text="Inside home :"
-                        android:textColor="@android:color/tertiary_text_dark"
-                        android:textColorLink="@android:color/tertiary_text_dark"
-
-                        android:textSize="14sp" />
-
-
-                    <TextView
-                        android:id="@+id/ambient_light_outside"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/ambient_light_inside"
-                        android:layout_alignStart="@+id/ambient_light_inside"
-                        android:layout_below="@+id/ambient_light_inside"
-                        android:text="Outside home :" />
-
-
-                </RelativeLayout>
-
-
-            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>

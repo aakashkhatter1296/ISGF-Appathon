@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Energy</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="rs">Cost per unit : \u20B9 4</string>
-    <string name="bill">Total billing cost : \u20B9 </string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -10,11 +9,11 @@
 
 
     <!-- Buttons strings -->
-    <string name="add_geofences">ON</string>
-    <string name="remove_geofences">OFF</string>
+    <string name="add_geofences">Add geofences</string>
+    <string name="remove_geofences">Remove geofences</string>
 
-    <string name="geofences_added">Location based Switching started.</string>
-    <string name="geofences_removed">Location based Switching turned off.</string>
+    <string name="geofences_added">Geofences added</string>
+    <string name="geofences_removed">Geofences removed</string>
 
     <!-- Error strings -->
     <string name="not_connected">GoogleApiClient no yet connected. Try again.</string>
@@ -39,5 +38,5 @@
     <string name="title_activity_animaiton_test">AnimaitonTestActivity</string>
     <string name="title_activity_called">CalledActivity</string>
     <string name="title_activity_root_detail">RootDetailActivity</string>
-    <string name="title_activity_physical_conditions_charts">PhysicalConditionsCharts</string>
+    <string name="action_location">Set Location</string>
 </resources>

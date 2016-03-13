@@ -24,6 +24,10 @@
             android:icon="@drawable/ic_menu_geofencing"
             android:title="Geofencing" />
         <item
+            android:id="@+id/nav_main_access"
+            android:icon="@drawable/ic_key"
+            android:title="Main Access" />
+        <item
             android:id="@+id/nav_weather"
             android:icon="@drawable/ic_menu_weather"
             android:title="Weather Awareness" />

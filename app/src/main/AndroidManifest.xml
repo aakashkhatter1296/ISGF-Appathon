@@ -35,8 +35,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -71,22 +70,7 @@
             android:name=".activities.RootDetailActivity"
             android:parentActivityName=".activities.MainActivity"
             android:label="@string/title_activity_root_detail"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nsit.hack.energy.activities.MainActivity" />
-        </activity>
-        <activity
-            android:name=".activities.PhysicalConditionsCharts"
-            android:parentActivityName=".activities.MainActivity"
-            android:label="@string/title_activity_physical_conditions_charts"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.nsit.hack.energy.activities.MainActivity" />
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
