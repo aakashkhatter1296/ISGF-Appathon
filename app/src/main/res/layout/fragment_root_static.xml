@@ -67,7 +67,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_toRightOf="@+id/temperature_icon"
                         android:singleLine="true"
-                        android:text="Inside home :"
+                        android:text="Current Voltage :"
                         android:textColor="@android:color/tertiary_text_dark"
                         android:textColorLink="@android:color/tertiary_text_dark"
 
@@ -81,7 +81,7 @@
                         android:layout_alignLeft="@+id/temperature_inside"
                         android:layout_alignStart="@+id/temperature_inside"
                         android:layout_below="@+id/temperature_inside"
-                        android:text="Outside home :" />
+                        android:text="No major voltage fluctuation" />
 
 
                 </RelativeLayout>
@@ -143,7 +143,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_toRightOf="@+id/humidity_icon"
                         android:singleLine="true"
-                        android:text="Inside home :"
+                        android:text="Reading : "
                         android:textColor="@android:color/tertiary_text_dark"
                         android:textColorLink="@android:color/tertiary_text_dark"
 
@@ -157,7 +157,7 @@
                         android:layout_alignLeft="@+id/humidity_inside"
                         android:layout_alignStart="@+id/humidity_inside"
                         android:layout_below="@+id/humidity_inside"
-                        android:text="Outside home :" />
+                        android:text="Statistics :" />
 
 
                 </RelativeLayout>
@@ -219,7 +219,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_toRightOf="@+id/ambient_light_icon"
                         android:singleLine="true"
-                        android:text="Inside home :"
+                        android:text="Current Power consumed :"
                         android:textColor="@android:color/tertiary_text_dark"
                         android:textColorLink="@android:color/tertiary_text_dark"
 
@@ -233,7 +233,7 @@
                         android:layout_alignLeft="@+id/ambient_light_inside"
                         android:layout_alignStart="@+id/ambient_light_inside"
                         android:layout_below="@+id/ambient_light_inside"
-                        android:text="Outside home :" />
+                        android:text="Power consumed in the day :" />
 
 
                 </RelativeLayout>

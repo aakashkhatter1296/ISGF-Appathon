@@ -22,9 +22,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c5f4859-86ae-405d-a453-43e1f4bbb4f4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/fragments/Root.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/fragments/Root.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/activities/RootDetailActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/activities/RootDetailActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_root_static.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_root_static.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -47,14 +44,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="fragment_root_static.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="fragment_root_static.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_root_static.xml">
           <provider selected="true" editor-type-id="android-designer">
             <state />
           </provider>
           <provider editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+              <caret line="170" column="38" selection-start-line="170" selection-start-column="38" selection-end-line="170" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -94,10 +91,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8819672">
+            <state vertical-scroll-proportion="0.0">
               <caret line="86" column="48" selection-start-line="86" selection-start-column="48" selection-end-line="86" selection-end-column="48" />
               <folding>
                 <element signature="e#1304#1322#0" expanded="true" />
@@ -2114,10 +2111,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_physical_conditions_charts.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/activities/PhysicalConditionsCharts.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/fragments/Scheduler.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_root_static.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/fragments/Root.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/nsit/hack/energy/activities/RootDetailActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_root_static.xml" />
       </list>
     </option>
   </component>
@@ -2619,7 +2616,13 @@
       <option name="project" value="LOCAL" />
       <updated>1457830980120</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="updated Root Fragment UI">
+      <created>1457834014237</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1457834014238</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2695,7 +2698,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updated physical conditions UI and added charts" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated physical conditions UI and added charts" />
+    <MESSAGE value="updated Root Fragment UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated Root Fragment UI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2789,17 +2793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_root_static.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_physical_conditions_charts.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2878,7 +2871,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8819672">
+        <state vertical-scroll-proportion="0.0">
           <caret line="86" column="48" selection-start-line="86" selection-start-column="48" selection-end-line="86" selection-end-column="48" />
           <folding>
             <element signature="e#1304#1322#0" expanded="true" />
@@ -2887,6 +2880,17 @@
             <element signature="e#3175#3211#0" expanded="true" />
             <element signature="e#3678#3729#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_root_static.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="170" column="38" selection-start-line="170" selection-start-column="38" selection-end-line="170" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
