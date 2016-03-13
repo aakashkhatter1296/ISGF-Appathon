@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -31,13 +32,16 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 public class RootDetailActivity extends AppCompatActivity {
-    String url = "http://iot.net.in/smartmeter/support/slice_iota.php";
+    String urlPower = "http://www.iot.net.in/homegrid/slice_root_new.php";
+    String urlVoltage = "http://www.iot.net.in/homegrid/slice_root_new.php";
+    String urlReading = "";
+    String url;
     JSONArray js;
     LineChart chart;
     ArrayList<String> xAxis;
     Task mTask;
     ProgressBar loadingSpinner;
-
+    private boolean mustStop;
     RequestQueue requestQueue;
 
     @Override
@@ -47,9 +51,20 @@ public class RootDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String rootProperty;
+
         Bundle extras = getIntent().getExtras();
-        rootProperty = extras.getString("rootProperty");
+        String rootProperty = extras.getString("rootProperty");
+        if (rootProperty.equals("voltage")) {
+            url = urlVoltage;
+            rootProperty = "Voltage";
+        } else if (rootProperty.equals("meterReading")) {
+            url = urlReading;
+            rootProperty = "Meter Reading";
+        } else {
+            url = urlPower;
+            rootProperty = "Power";
+        }
+
         setTitle(rootProperty);
 
         try {
@@ -58,11 +73,10 @@ public class RootDetailActivity extends AppCompatActivity {
             npe.printStackTrace();
         }
 
-
         requestQueue = VolleySingleton.getmInstance().getRequestQueue();
 
         xAxis = new ArrayList<>(); //x
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             xAxis.add("j" + i);
         }
         chart = (LineChart) findViewById(R.id.chart1);
@@ -70,8 +84,6 @@ public class RootDetailActivity extends AppCompatActivity {
         chart.setData(new LineData());
 
         //chart.setDescription("Variation of temperature with time");
-
-
     }
 
     private void updateData(JSONArray js) {
@@ -89,24 +101,35 @@ public class RootDetailActivity extends AppCompatActivity {
             set = createSet();
             data.addDataSet(set);
         }
-        try {
-            for (int j = 0; j < js.length(); j++) {
-
-                data.addXValue(String.valueOf(j));
-                data.addEntry(new Entry((float) js.getJSONObject(j).getInt("temp"), set.getEntryCount()), 0);
+        if (url.equals(urlPower)) {
+            try {
+                for (int j = 0; j < js.length(); j++) {
+                    data.addXValue(String.valueOf(j));
+                    double power = js.getJSONObject(j).getDouble("voltage_v") *
+                            js.getJSONObject(j).getDouble("current_i");
+                    data.addEntry(new Entry((float) power,
+                            set.getEntryCount()), 0);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        } else if (url.equals(urlVoltage)) {
+            try {
+                for (int j = 0; j < js.length(); j++) {
+                    data.addXValue(String.valueOf(j));
+                    data.addEntry(new Entry((float) js.getJSONObject(j).getDouble("voltage_v"),
+                            set.getEntryCount()), 0);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-
         chart.notifyDataSetChanged();
-        chart.setVisibleXRangeMaximum(10);
-        chart.moveViewToX(data.getXValCount() - 11);
-
+        chart.setVisibleXRangeMaximum(js.length());
+        chart.moveViewToX(data.getXValCount() - js.length() + 1);
     }
 
     private LineDataSet createSet() {
-
         LineDataSet set = new LineDataSet(null, "Dynamic Data");
         set.setAxisDependency(YAxis.AxisDependency.LEFT);
         set.setColor(ColorTemplate.getHoloBlue());
@@ -134,21 +157,19 @@ public class RootDetailActivity extends AppCompatActivity {
 //                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 //            jsonArrRequest.setShouldCache(false);
 
-            while (true) {
-
+            while (!mustStop) {
                 jsonArrRequest = new StringRequest(Request.Method.GET,
                         url,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
                                 try {
+                                    Log.d("url", url);
                                     js = new JSONArray(response);
-
 //                                    ArrayList entries = new ArrayList<>();
 //                                    for (int j = 0; j < js.length(); j++) {
 //                                        entries.add(new Entry((float) js.getJSONObject(j).getDouble("a_current"), j));
 //                                    }
-
                                     updateData(js);
                                     Log.d("aakash", "" + js);
                                 } catch (JSONException e) {
@@ -173,12 +194,21 @@ public class RootDetailActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+            return null;
         }
     }
+
+    /*@Override
+    public void onBackPressed() {
+        if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING)
+            mTask.cancel(true);
+        //super.onBackPressed();
+    }*/
 
     @Override
     public void onResume() {
         super.onResume();
+        mustStop = false;
         mTask = new Task();
         mTask.execute();
     }
@@ -186,9 +216,28 @@ public class RootDetailActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
+        mustStop = true;
         //check the state of the task
-        if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING)
-            mTask.cancel(true);
+        /*if (mTask != null && mTask.getStatus() == AsyncTask.Status.RUNNING)
+            mTask.cancel(true);*/
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //check the state of the task
+        mustStop = true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            super.onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
