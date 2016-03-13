@@ -11,10 +11,10 @@
             android:id="@+id/nav_devices"
             android:icon="@drawable/ic_devices_24dp"
             android:title="Devices" />
-        <!--<item-->
-            <!--android:id="@+id/nav_scheduler"-->
-            <!--android:icon="@drawable/ic_menu_scheduler"-->
-            <!--android:title="Scheduler" />-->
+        <item
+            android:id="@+id/nav_scheduler"
+            android:icon="@drawable/ic_bill_24dp"
+            android:title="Billing" />
         <!--<item-->
             <!--android:id="@+id/nav_power"-->
             <!--android:icon="@drawable/ic_menu_power"-->
@@ -22,7 +22,7 @@
         <item
             android:id="@+id/nav_geofencing"
             android:icon="@drawable/ic_menu_geofencing"
-            android:title="Location based power switching." />
+            android:title="Location based Switches." />
         <item
             android:id="@+id/nav_main_access"
             android:icon="@drawable/ic_key"

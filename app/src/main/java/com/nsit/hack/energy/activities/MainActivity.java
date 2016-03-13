@@ -98,23 +98,23 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_devices) {
             setTitle("Devices");
             newFragment = new Devices();
-        } /*else if (id == R.id.nav_scheduler) {
-            setTitle("Scheduler");
+        } else if (id == R.id.nav_scheduler) {
+            setTitle("Billing");
             newFragment = new Scheduler();
-        } else if (id == R.id.nav_power) {
+        } /*else if (id == R.id.nav_power) {
             setTitle("Power Monitor");
             newFragment = new PowerMonitor();
         }*/ else if (id == R.id.nav_geofencing) {
-            setTitle("Geofencing");
+            setTitle("GeoFencing");
             newFragment = new Geofencing();
         } else if (id == R.id.nav_main_access) {
             setTitle("Main Access");
             newFragment = new MainAccess();
         } else if (id == R.id.nav_weather) {
-            setTitle("Physical Conditions");
+            setTitle("Climatic Conditions");
             newFragment = new PhysicalConditions();
         } else if (id == R.id.nav_hotspot) {
-            setTitle("Hotspot");
+            setTitle("Add new Smart Device");
             newFragment = new Hotspot();
         } else if (id == R.id.nav_settings) {
             setTitle("Settings");

@@ -39,6 +39,24 @@ public class SharedPrefs {
 
     }
 
+    public static void setPrefs (String preferenceName,long preferenceValue){
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME,context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong(preferenceName, preferenceValue);
+        editor.apply();
+
+    }
+
+    public static void setPrefs (String preferenceName,float preferenceValue){
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME,context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putFloat(preferenceName, preferenceValue);
+        editor.apply();
+
+    }
+
     public static String getPrefs(String preferenceName,String defaultValue){
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME,context.MODE_PRIVATE);
@@ -57,6 +75,13 @@ public class SharedPrefs {
 
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME,context.MODE_PRIVATE);
         return sharedPreferences.getInt(preferenceName, defaultValue);
+
+    }
+
+    public static float getPrefs(String preferenceName, float defaultValue){
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_FILE_NAME,context.MODE_PRIVATE);
+        return sharedPreferences.getFloat(preferenceName,defaultValue);
 
     }
 

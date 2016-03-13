@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Energy</string>
+    <string name="app_name">Home Grid</string>
     <string name="title_activity_main">MainActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -41,4 +41,5 @@
     <string name="action_location">Set Location</string>
     <string name="rs">Cost per unit: \\u20b9 4</string>
     <string name="bill">Total billing cost: \\u20b9</string>
+    <string name="title_activity_add_new_device">AddNewDevice</string>
 </resources>

@@ -15,6 +15,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.nsit.hack.energy.R;
+import com.nsit.hack.energy.utils.SharedPrefs;
 
 /**
  * Created by joydeep on 13/3/16.
@@ -36,6 +37,8 @@ public class LocationActivity extends AppCompatActivity implements OnMapReadyCal
                 LatLng centerOfMap = googleMap.getCameraPosition().target;
                 latitude = centerOfMap.latitude;
                 longitude = centerOfMap.longitude;
+                SharedPrefs.setPrefs("latitude", (float) latitude);
+                SharedPrefs.setPrefs("longitude", (float) longitude);
                 Log.d("location", latitude + " " + longitude);
             }
         });

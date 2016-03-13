@@ -1,6 +1,7 @@
 package com.nsit.hack.energy.geoFencing;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.nsit.hack.energy.utils.SharedPrefs;
 
 import java.util.HashMap;
 
@@ -34,7 +35,9 @@ public final class Constants {
     public static final HashMap<String, LatLng> BAY_AREA_LANDMARKS = new HashMap<String, LatLng>();
     static {
         // San Francisco International Airport.
-        BAY_AREA_LANDMARKS.put("NSIT", new LatLng(28.6091309,77.0328746));
+        double lat = (double)SharedPrefs.getPrefs("latitude",28.6091309f);
+        double lon = (double) SharedPrefs.getPrefs("longitude",77.0328746f);
+        BAY_AREA_LANDMARKS.put("HOME", new LatLng(lat,lon));
 
         // Googleplex.
         BAY_AREA_LANDMARKS.put("GOOGLE", new LatLng(37.422611,-122.0840577));

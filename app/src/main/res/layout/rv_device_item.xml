@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="3dp"
+        android:id="@+id/voltage_card"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp">
+
+            <ImageView
+                android:id="@+id/temperature_icon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_devices_24dp"
+                android:backgroundTint="@color/colorAccent"
+                android:gravity="center"
+                android:textColor="#ffffff"
+       />
+
+            <TextView
+                android:id="@+id/device_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_toEndOf="@+id/temperature_icon"
+                android:layout_toRightOf="@+id/temperature_icon"
+                android:singleLine="true"
+                android:text="Device 1: "
+                android:textAppearance="?android:attr/textAppearanceListItem"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/device_app_power"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="Apparent Power: "
+                android:textColor="@android:color/tertiary_text_dark"
+                android:textColorLink="@android:color/tertiary_text_dark"
+                android:textSize="14sp"
+                android:layout_below="@+id/temperature_icon"
+                android:layout_alignLeft="@+id/device_react_power"
+                android:layout_alignStart="@+id/device_react_power" />
+
+
+            <TextView
+                android:id="@+id/device_react_power"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reactive Power: "
+                android:layout_above="@+id/device_app_power"
+                android:layout_alignLeft="@+id/device_title"
+                android:layout_alignStart="@+id/device_title" />
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
