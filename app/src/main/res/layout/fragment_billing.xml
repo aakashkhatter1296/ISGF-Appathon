@@ -27,5 +27,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/rs"
         android:id="@+id/cost" />
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/bill"
+        android:id="@+id/totalbill" />
 </LinearLayout>
