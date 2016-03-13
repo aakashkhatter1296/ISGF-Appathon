@@ -77,9 +77,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -98,24 +98,25 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_devices) {
             setTitle("Devices");
             newFragment = new Devices();
-//        } else if (id == R.id.nav_scheduler) {
-//            setTitle("Scheduler");
-//            newFragment = new Scheduler();
-//        } else if (id == R.id.nav_power) {
-//            setTitle("Power Monitor");
-//            newFragment = new PowerMonitor();
-//        } else if (id == R.id.nav_geofencing) {
+        } /*else if (id == R.id.nav_scheduler) {
+            setTitle("Scheduler");
+            newFragment = new Scheduler();
+        } else if (id == R.id.nav_power) {
+            setTitle("Power Monitor");
+            newFragment = new PowerMonitor();
+        }*/ else if (id == R.id.nav_geofencing) {
             setTitle("Geofencing");
             newFragment = new Geofencing();
-//            setTitle("Main Access");
-//            newFragment = new MainAccess();
+        } else if (id == R.id.nav_main_access) {
+            setTitle("Main Access");
+            newFragment = new MainAccess();
         } else if (id == R.id.nav_weather) {
             setTitle("Physical Conditions");
             newFragment = new PhysicalConditions();
         } else if (id == R.id.nav_hotspot) {
             setTitle("Hotspot");
             newFragment = new Hotspot();
-        }else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_settings) {
             setTitle("Settings");
             newFragment = new Settings();
         }

@@ -39,4 +39,6 @@
     <string name="title_activity_called">CalledActivity</string>
     <string name="title_activity_root_detail">RootDetailActivity</string>
     <string name="action_location">Set Location</string>
+    <string name="rs">Cost per unit: \\u20b9 4</string>
+    <string name="bill">Total billing cost: \\u20b9</string>
 </resources>

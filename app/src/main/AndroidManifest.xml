@@ -16,10 +16,21 @@
         android:name="com.nsit.hack.energy.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
+    <permission
+        android:name="com.nsit.hack.energy.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.nsit.hack.energy.permission.MAPS_RECEIVE" />
+
     <uses-permission android:name="com.nsit.hack.energy.permission.C2D_MESSAGE" />
     <!-- This app has permission to register and receive dataf message. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -70,7 +81,25 @@
             android:name=".activities.RootDetailActivity"
             android:parentActivityName=".activities.MainActivity"
             android:label="@string/title_activity_root_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".activities.LocationActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:label="Set Location"
+            android:theme="@style/AppTheme"/>
+
+        <activity
+            android:name=".activities.PhysicalConditionsCharts"
+            android:parentActivityName=".activities.MainActivity"
+            android:label="Physical Condition Charts"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDFnv47dShURVMjq6aZhWIDcWFGHpxQw3I" />
+
+
     </application>
 
 </manifest>
