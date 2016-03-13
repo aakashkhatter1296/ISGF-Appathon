@@ -77,6 +77,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nsit.hack.energy.activities.MainActivity" />
         </activity>
+        <activity
+            android:name=".activities.PhysicalConditionsCharts"
+            android:parentActivityName=".activities.MainActivity"
+            android:label="@string/title_activity_physical_conditions_charts"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.nsit.hack.energy.activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
