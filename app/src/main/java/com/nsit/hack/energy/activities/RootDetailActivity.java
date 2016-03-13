@@ -49,6 +49,13 @@ public class RootDetailActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+        try {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } catch (NullPointerException npe) {
+            npe.printStackTrace();
+        }
+
+
         requestQueue = VolleySingleton.getmInstance().getRequestQueue();
 
         xAxis = new ArrayList<>(); //x

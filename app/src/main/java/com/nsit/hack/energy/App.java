@@ -3,6 +3,8 @@ package com.nsit.hack.energy;
 import android.app.Application;
 import android.content.Context;
 
+import com.pushbots.push.Pushbots;
+
 /**
  * Created by aman on 13/3/16.
  */
@@ -13,6 +15,8 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+
+        Pushbots.sharedInstance().init(this);
 
     }
 

@@ -12,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -61,6 +63,8 @@ public class Geofencing extends Fragment implements ConnectionCallbacks, OnConne
     private Button mAddGeofencesButton;
     private Button mRemoveGeofencesButton;
 
+    private Switch mGeofenceSwitch;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
@@ -81,6 +85,18 @@ public class Geofencing extends Fragment implements ConnectionCallbacks, OnConne
                 removeGeofencesButtonHandler(v);
             }
         });
+        mGeofenceSwitch = (Switch) v.findViewById(R.id.geofence_switch);
+
+        mGeofenceSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked) {
+                    addGeofencesButtonHandler(buttonView);
+                } else {
+                    removeGeofencesButtonHandler(buttonView);
+                }
+            }
+        });
         // Empty list for storing geofences.
         mGeofenceList = new ArrayList<Geofence>();
 
@@ -99,6 +115,10 @@ public class Geofencing extends Fragment implements ConnectionCallbacks, OnConne
 
         // Kick off the request to build GoogleApiClient.
         buildGoogleApiClient();
+
+        //OUR CODE
+
+
 
         return v;
     }

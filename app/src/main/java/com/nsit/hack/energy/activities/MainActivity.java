@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.nsit.hack.energy.R;
+import com.nsit.hack.energy.fragments.Devices;
 import com.nsit.hack.energy.fragments.Geofencing;
 import com.nsit.hack.energy.fragments.Hotspot;
 import com.nsit.hack.energy.fragments.MainAccess;
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Pushbots.sharedInstance().init(this);
+//        Pushbots.sharedInstance().init(this);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -94,6 +95,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             setTitle("Home");
             newFragment = new Root();
+        } else if (id == R.id.nav_devices) {
+            setTitle("Devices");
+            newFragment = new Devices();
         } else if (id == R.id.nav_scheduler) {
             setTitle("Scheduler");
             newFragment = new Scheduler();
@@ -101,10 +105,10 @@ public class MainActivity extends AppCompatActivity
             setTitle("Power Monitor");
             newFragment = new PowerMonitor();
         } else if (id == R.id.nav_geofencing) {
-//            setTitle("Geofencing");
-//            newFragment = new Geofencing();
-            setTitle("Main Access");
-            newFragment = new MainAccess();
+            setTitle("Geofencing");
+            newFragment = new Geofencing();
+//            setTitle("Main Access");
+//            newFragment = new MainAccess();
         } else if (id == R.id.nav_weather) {
             setTitle("Physical Conditions");
             newFragment = new PhysicalConditions();

@@ -9,11 +9,11 @@
 
 
     <!-- Buttons strings -->
-    <string name="add_geofences">Add geofences</string>
-    <string name="remove_geofences">Remove geofences</string>
+    <string name="add_geofences">ON</string>
+    <string name="remove_geofences">OFF</string>
 
-    <string name="geofences_added">Geofences added</string>
-    <string name="geofences_removed">Geofences removed</string>
+    <string name="geofences_added">Location based Switching started.</string>
+    <string name="geofences_removed">Location based Switching turned off.</string>
 
     <!-- Error strings -->
     <string name="not_connected">GoogleApiClient no yet connected. Try again.</string>
