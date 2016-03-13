@@ -1,5 +1,7 @@
 package com.nsit.hack.energy.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,8 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.nsit.hack.energy.R;
+import com.nsit.hack.energy.utils.SharedPrefs;
 import com.nsit.hack.energy.utils.ShowMessage;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -119,7 +123,17 @@ public class AddNewDevice extends AppCompatActivity {
 
         json = json.concat("]");
 
-        ShowMessage.toast(json);
+        ShowMessage.log(json);
+
+        JSONArray jsonArray = new JSONArray(json);
+
+        SharedPrefs.setPrefs("jsonDevices", json);
+
+        ShowMessage.toast("Device(s) added successfully");
+
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_OK, returnIntent);
+        finish();
 
 
     }

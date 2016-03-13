@@ -1,9 +1,12 @@
 package com.nsit.hack.energy.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +22,10 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.nsit.hack.energy.App;
 import com.nsit.hack.energy.R;
 import com.nsit.hack.energy.activities.AddNewDevice;
+import com.nsit.hack.energy.adapters.RunningDevicesAdapter;
 import com.nsit.hack.energy.network.VolleySingleton;
+import com.nsit.hack.energy.utils.SharedPrefs;
+import com.nsit.hack.energy.utils.ShowMessage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +38,13 @@ public class Devices extends Fragment {
 
     TextView appPow, reactPow;
     RequestQueue requestQueue;
+    RunningDevicesAdapter adapter;
+
+    RecyclerView recyclerView;
+
+    String json;
+
+    RecyclerView.LayoutManager layoutManager;
 
     public Devices() {
         //
@@ -58,11 +71,15 @@ public class Devices extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(App.getAppContext(), AddNewDevice.class);
-                startActivity(i);
+                startActivityForResult(i, 1);
             }
         });
 
 
+
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView_running_devices_list);
+
+        populateRecycler();
         updateDeviceList();
         return rootView;
 
@@ -88,7 +105,7 @@ public class Devices extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                ShowMessage.toast("Oops something went wrong...");
             }
         });
 
@@ -97,5 +114,40 @@ public class Devices extends Fragment {
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(jsonArrayRequest);
+    }
+
+    public void populateRecycler() {
+        json = SharedPrefs.getPrefs("jsonDevices","[]");
+
+        if(json.equals("[]")) {
+            ShowMessage.toast("No devices configured");
+        } else {
+            try {
+                JSONArray jsonArray = new JSONArray(json);
+
+                adapter = new RunningDevicesAdapter(jsonArray);
+                layoutManager = new LinearLayoutManager(App.getAppContext());
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+            } catch (JSONException e) {
+                ShowMessage.toast("No combination found for configured devices");
+
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                populateRecycler();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
     }
 }
