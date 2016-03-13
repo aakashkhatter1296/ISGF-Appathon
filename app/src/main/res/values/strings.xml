@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Energy</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="rs">Cost per unit : \u20A8 4</string>
+    <string name="rs">Cost per unit : \u20B9 4</string>
+    <string name="bill">Total billing cost : \u20B9 </string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -38,4 +39,5 @@
     <string name="title_activity_animaiton_test">AnimaitonTestActivity</string>
     <string name="title_activity_called">CalledActivity</string>
     <string name="title_activity_root_detail">RootDetailActivity</string>
+    <string name="title_activity_physical_conditions_charts">PhysicalConditionsCharts</string>
 </resources>

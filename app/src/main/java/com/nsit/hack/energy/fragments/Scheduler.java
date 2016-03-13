@@ -14,6 +14,7 @@ import com.nsit.hack.energy.R;
 public class Scheduler extends Fragment {
     public Scheduler() {
     }
+    String url = "http://enter-your-url.com";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

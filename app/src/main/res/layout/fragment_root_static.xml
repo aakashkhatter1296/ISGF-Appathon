@@ -53,7 +53,7 @@
                         android:layout_toEndOf="@+id/temperature_icon"
                         android:layout_toRightOf="@+id/temperature_icon"
                         android:singleLine="true"
-                        android:text="Temperature"
+                        android:text="Voltage Fluctuations"
                         android:textAppearance="?android:attr/textAppearanceListItem"
                         android:textSize="24dp" />
 
@@ -129,7 +129,7 @@
                         android:layout_toEndOf="@+id/humidity_icon"
                         android:layout_toRightOf="@+id/humidity_icon"
                         android:singleLine="true"
-                        android:text="Humidity"
+                        android:text="Meter Reading"
                         android:textAppearance="?android:attr/textAppearanceListItem"
                         android:textSize="24dp" />
 
@@ -205,7 +205,7 @@
                         android:layout_toEndOf="@+id/ambient_light_icon"
                         android:layout_toRightOf="@+id/ambient_light_icon"
                         android:singleLine="true"
-                        android:text="Ambient Light"
+                        android:text="Power"
                         android:textAppearance="?android:attr/textAppearanceListItem"
                         android:textSize="24dp" />
 
