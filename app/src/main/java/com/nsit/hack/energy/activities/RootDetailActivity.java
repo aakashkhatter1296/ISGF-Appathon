@@ -45,8 +45,12 @@ public class RootDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_root_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        String rootProperty;
+        Bundle extras = getIntent().getExtras();
+        rootProperty = extras.getString("rootProperty");
+        setTitle(rootProperty);
 
         try {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
