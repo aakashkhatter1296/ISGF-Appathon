@@ -41,6 +41,7 @@ public class PhysicalConditionsCharts extends AppCompatActivity {
     private boolean mustStop;
     RequestQueue requestQueue;
     String physicalCondition;
+    private int time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,13 @@ public class PhysicalConditionsCharts extends AppCompatActivity {
         loadingSpinner = (ProgressBar) findViewById(R.id.loadingSpinner2);
         chart.setData(new LineData());
 
+        if (physicalCondition.equals("Temperature")) {
+            chart.setDescription("Temperature v/s Time");
+        } else if (physicalCondition.equals("Humidity")) {
+            chart.setDescription("Humidity v/s Time");
+        } else {
+            chart.setDescription("Ambient Light v/s Time");
+        }
     }
 
     private void updateData(JSONArray js) {
@@ -83,9 +91,8 @@ public class PhysicalConditionsCharts extends AppCompatActivity {
         if (physicalCondition.equals("Temperature")) {
             try {
                 for (int j = 0; j < js.length(); j++) {
-
                     data.addXValue(String.valueOf(j));
-                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("temp"), set.getEntryCount()), 0);
+                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("temp"), time++), 0);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -93,9 +100,8 @@ public class PhysicalConditionsCharts extends AppCompatActivity {
         } else if (physicalCondition.equals("Humidity")) {
             try {
                 for (int j = 0; j < js.length(); j++) {
-
                     data.addXValue(String.valueOf(j));
-                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("humidity"), set.getEntryCount()), 0);
+                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("humidity"), time++), 0);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -103,9 +109,8 @@ public class PhysicalConditionsCharts extends AppCompatActivity {
         } else if (physicalCondition.equals("Ambient light")) {
             try {
                 for (int j = 0; j < js.length(); j++) {
-
                     data.addXValue(String.valueOf(j));
-                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("ldr"), set.getEntryCount()), 0);
+                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("ldr"), time++), 0);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -179,6 +184,7 @@ public class PhysicalConditionsCharts extends AppCompatActivity {
         mustStop = false;
         mTask = new Task();
         mTask.execute();
+        time = 0;
     }
 
     @Override

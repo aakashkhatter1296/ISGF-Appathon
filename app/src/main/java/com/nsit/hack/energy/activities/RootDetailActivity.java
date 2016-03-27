@@ -43,6 +43,7 @@ public class RootDetailActivity extends AppCompatActivity {
     ProgressBar loadingSpinner;
     private boolean mustStop;
     RequestQueue requestQueue;
+    private int time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +55,19 @@ public class RootDetailActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         String rootProperty = extras.getString("rootProperty");
+        chart = (LineChart) findViewById(R.id.chart1);
         if (rootProperty.equals("voltage")) {
             url = urlVoltage;
             rootProperty = "Voltage";
+            chart.setDescription("Voltage v/s Time");
         } else if (rootProperty.equals("meterReading")) {
             url = urlReading;
             rootProperty = "Meter Reading";
+            chart.setDescription("");
         } else {
             url = urlPower;
             rootProperty = "Power";
+            chart.setDescription("Power v/s Time");
         }
 
         setTitle(rootProperty);
@@ -79,11 +84,8 @@ public class RootDetailActivity extends AppCompatActivity {
         for (int i = 0; i < 5; i++) {
             xAxis.add("j" + i);
         }
-        chart = (LineChart) findViewById(R.id.chart1);
         loadingSpinner = (ProgressBar) findViewById(R.id.loadingSpinner);
         chart.setData(new LineData());
-
-        //chart.setDescription("Variation of temperature with time");
     }
 
     private void updateData(JSONArray js) {
@@ -108,7 +110,7 @@ public class RootDetailActivity extends AppCompatActivity {
                     double power = js.getJSONObject(j).getDouble("voltage_v") *
                             js.getJSONObject(j).getDouble("current_i");
                     data.addEntry(new Entry((float) power,
-                            set.getEntryCount()), 0);
+                            time++), 0);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -118,7 +120,7 @@ public class RootDetailActivity extends AppCompatActivity {
                 for (int j = 0; j < js.length(); j++) {
                     data.addXValue(String.valueOf(j));
                     data.addEntry(new Entry((float) js.getJSONObject(j).getDouble("voltage_v"),
-                            set.getEntryCount()), 0);
+                            time++), 0);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -209,6 +211,7 @@ public class RootDetailActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         mustStop = false;
+        time = 0;
         mTask = new Task();
         mTask.execute();
     }

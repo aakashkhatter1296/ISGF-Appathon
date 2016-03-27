@@ -4,23 +4,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Switch
+  <!--  <&lt;!&ndash;Switch
         android:id="@+id/hotspot_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:text="" />
+        android:text="" />&ndash;&gt;
+-->
 
-    <ImageView
-        android:id="@+id/refresh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/hotspot_toggle"
-        android:layout_centerHorizontal="true"
-        android:clickable="true"
-        android:padding="10dp"
-        android:src="@drawable/ic_refresh" />
+
+        <ImageView
+            android:id="@+id/refresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_wifi_tethering" />
+
 
     <TextView
         android:id="@+id/connected"
