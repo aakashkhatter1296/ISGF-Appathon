@@ -32,7 +32,8 @@ import org.json.JSONException;
 public class PhysicalConditions extends Fragment {
 
     private boolean mustStop;
-    String url = "http://www.iot.net.in/homegrid/slice_iota.php";
+//    String url = "http://www.iot.net.in/homegrid/slice_iota.php";
+    String url = "http://iot.net.in/sparcs/slice_sparcs_climate.php";
     RequestQueue requestQueue;
     JSONArray js;
     Task mTask;
@@ -74,7 +75,7 @@ public class PhysicalConditions extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PhysicalConditionsCharts.class);
-                intent.putExtra("condition", "Humidity");
+                intent.putExtra("condition", "Dust");
                 startActivity(intent);
             }
         });
@@ -106,9 +107,9 @@ public class PhysicalConditions extends Fragment {
                             public void onResponse(String response) {
                                 try {
                                     js = new JSONArray(response);
-                                    String temp = "Inside: " + js.getJSONObject(4).getInt("temp");
-                                    String humid = "Inside: " + js.getJSONObject(4).getInt("humidity");
-                                    String light = "Inside: " + js.getJSONObject(4).getInt("ldr");
+                                    String temp = "Inside: " + js.getJSONObject(4).getInt("temp_s");
+                                    String humid = "Inside: " + js.getJSONObject(4).getInt("dust_s");
+                                    String light = "Inside: " + js.getJSONObject(4).getInt("light_s");
                                     tempIN.setText(temp);
                                     humidIN.setText(humid);
                                     lightIN.setText(light);

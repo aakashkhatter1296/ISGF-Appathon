@@ -129,7 +129,7 @@
                         android:layout_toEndOf="@+id/humidity_icon"
                         android:layout_toRightOf="@+id/humidity_icon"
                         android:singleLine="true"
-                        android:text="Humidity"
+                        android:text="Dust"
                         android:textAppearance="?android:attr/textAppearanceListItem"
                         android:textSize="24dp" />
 

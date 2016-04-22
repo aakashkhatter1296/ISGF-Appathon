@@ -58,7 +58,7 @@
                         android:textSize="24dp" />
 
                     <TextView
-                        android:id="@+id/temperature_inside"
+                        android:id="@+id/curr_voltage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/temperature_title"
@@ -78,10 +78,9 @@
                         android:id="@+id/temperature_outside"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/temperature_inside"
-                        android:layout_alignStart="@+id/temperature_inside"
-                        android:layout_below="@+id/temperature_inside"
-                        android:text="No major voltage fluctuation" />
+                        android:text="No major voltage fluctuation"
+                        android:layout_alignBottom="@+id/temperature_icon"
+                        android:layout_centerHorizontal="true" />
 
 
                 </RelativeLayout>
@@ -210,7 +209,7 @@
                         android:textSize="24dp" />
 
                     <TextView
-                        android:id="@+id/ambient_light_inside"
+                        android:id="@+id/curr_power"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ambient_light_title"
@@ -230,10 +229,9 @@
                         android:id="@+id/ambient_light_outside"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/ambient_light_inside"
-                        android:layout_alignStart="@+id/ambient_light_inside"
-                        android:layout_below="@+id/ambient_light_inside"
-                        android:text="Power consumed in the day :" />
+                        android:text="Power consumed in the day :"
+                        android:layout_alignBottom="@+id/ambient_light_icon"
+                        android:layout_centerHorizontal="true" />
 
 
                 </RelativeLayout>

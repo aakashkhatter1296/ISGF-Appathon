@@ -32,9 +32,12 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 public class RootDetailActivity extends AppCompatActivity {
-    String urlPower = "http://www.iot.net.in/homegrid/slice_root_new.php";
-    String urlVoltage = "http://www.iot.net.in/homegrid/slice_root_new.php";
+//    String urlPower = "http://www.iot.net.in/homegrid/slice_root_new.php";
+//    String urlVoltage = "http://www.iot.net.in/homegrid/slice_root_new.php";
+    String urlPower = "http://iot.net.in/sparcs/slice_edison_vi.php";
+    String urlVoltage = "http://iot.net.in/sparcs/slice_edison_vi.php";
     String urlReading = "";
+    String prop;
     String url;
     JSONArray js;
     LineChart chart;
@@ -56,6 +59,7 @@ public class RootDetailActivity extends AppCompatActivity {
         String rootProperty = extras.getString("rootProperty");
         if (rootProperty.equals("voltage")) {
             url = urlVoltage;
+            prop = "voltage";
             rootProperty = "Voltage";
         } else if (rootProperty.equals("meterReading")) {
             url = urlReading;
@@ -63,6 +67,7 @@ public class RootDetailActivity extends AppCompatActivity {
         } else {
             url = urlPower;
             rootProperty = "Power";
+            prop = "power";
         }
 
         setTitle(rootProperty);
@@ -101,23 +106,23 @@ public class RootDetailActivity extends AppCompatActivity {
             set = createSet();
             data.addDataSet(set);
         }
-        if (url.equals(urlPower)) {
+        if (url.equals(urlPower) && prop.equals("power")) {
             try {
                 for (int j = 0; j < js.length(); j++) {
                     data.addXValue(String.valueOf(j));
-                    double power = js.getJSONObject(j).getDouble("voltage_v") *
-                            js.getJSONObject(j).getDouble("current_i");
+                    double power = js.getJSONObject(j).getDouble("voltage_s") *
+                            js.getJSONObject(j).getDouble("current_s");
                     data.addEntry(new Entry((float) power,
                             set.getEntryCount()), 0);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if (url.equals(urlVoltage)) {
+        } else if (url.equals(urlVoltage) && prop.equals("voltage")) {
             try {
                 for (int j = 0; j < js.length(); j++) {
                     data.addXValue(String.valueOf(j));
-                    data.addEntry(new Entry((float) js.getJSONObject(j).getDouble("voltage_v"),
+                    data.addEntry(new Entry((float) js.getJSONObject(j).getDouble("voltage_s"),
                             set.getEntryCount()), 0);
                 }
             } catch (JSONException e) {

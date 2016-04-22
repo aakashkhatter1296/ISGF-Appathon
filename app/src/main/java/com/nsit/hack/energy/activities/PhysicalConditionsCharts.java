@@ -32,7 +32,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 public class PhysicalConditionsCharts extends AppCompatActivity {
-    String url = "http://www.iot.net.in/homegrid/slice_iota.php";
+//    String url = "http://www.iot.net.in/homegrid/slice_iota.php";
+    String url = "http://iot.net.in/sparcs/slice_sparcs_climate.php";
     JSONArray js;
     LineChart chart;
     ArrayList<String> xAxis;
@@ -85,17 +86,17 @@ public class PhysicalConditionsCharts extends AppCompatActivity {
                 for (int j = 0; j < js.length(); j++) {
 
                     data.addXValue(String.valueOf(j));
-                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("temp"), set.getEntryCount()), 0);
+                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("temp_s"), set.getEntryCount()), 0);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else if (physicalCondition.equals("Humidity")) {
+        } else if (physicalCondition.equals("Dust")) {
             try {
                 for (int j = 0; j < js.length(); j++) {
 
                     data.addXValue(String.valueOf(j));
-                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("humidity"), set.getEntryCount()), 0);
+                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("dust_s"), set.getEntryCount()), 0);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -105,7 +106,7 @@ public class PhysicalConditionsCharts extends AppCompatActivity {
                 for (int j = 0; j < js.length(); j++) {
 
                     data.addXValue(String.valueOf(j));
-                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("ldr"), set.getEntryCount()), 0);
+                    data.addEntry(new Entry((float) js.getJSONObject(j).getInt("light_s"), set.getEntryCount()), 0);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
