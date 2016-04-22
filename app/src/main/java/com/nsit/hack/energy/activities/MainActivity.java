@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity
             setTitle("Power Monitor");
             newFragment = new PowerMonitor();
         }*/ else if (id == R.id.nav_geofencing) {
-            setTitle("GeoFencing");
+            setTitle("Location Triggers");
             newFragment = new Geofencing();
         } else if (id == R.id.nav_main_access) {
             setTitle("Main Access");
@@ -116,10 +116,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_hotspot) {
             setTitle("Add new Smart Device");
             newFragment = new Hotspot();
-        } else if (id == R.id.nav_settings) {
+        } /*else if (id == R.id.nav_settings) {
             setTitle("Settings");
             newFragment = new Settings();
-        }
+        }*/
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_frame, newFragment);

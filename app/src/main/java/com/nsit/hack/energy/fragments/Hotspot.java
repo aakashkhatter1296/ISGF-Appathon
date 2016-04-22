@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,9 @@ public class Hotspot extends Fragment {
     private WiFiHotspot hotUtil;
     private TextView connected;
     private String connection;
+    private LinearLayout linear;
+    private boolean check;
+    ImageView image;
 
     public Hotspot() {
         // Required empty public constructor
@@ -41,19 +45,62 @@ public class Hotspot extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_hotspot, container, false);
 
         hotUtil = new WiFiHotspot(getActivity());
-
-        final Switch mButton = (Switch) rootView.findViewById(R.id.hotspot_toggle);
         connected = (TextView) rootView.findViewById(R.id.connected);
+
+        //linear = (LinearLayout) rootView.findViewById(R.id.ref);
+        image = (ImageView) rootView.findViewById(R.id.refresh);
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!check) {
+                    if (hotUtil.startHotSpot(true)) {
+                        Toast.makeText(getActivity().getApplicationContext(),
+                                "Device HotSpot is Turned On", Toast.LENGTH_SHORT).show();
+                        check = true;
+                        image.setImageResource(R.drawable.ic_tethering_on);
+                        connected.setText("Hotspot on");
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(),
+                                "Device HotSpot is Not Turned On", Toast.LENGTH_SHORT).show();
+                        check = false;
+                        connected.setText("Hotspot off");
+                        image.setImageResource(R.drawable.ic_wifi_tethering);
+                    }
+                } else {
+                    if (hotUtil.startHotSpot(false)) {
+                        Toast.makeText(getActivity().getApplicationContext(),
+                                " Device HotSpot is Turned Off", Toast.LENGTH_SHORT).show();
+                        check = false;
+                        image.setImageResource(R.drawable.ic_wifi_tethering);
+                        connected.setText("Hotspot off");
+                    } else {
+                        Toast.makeText(getActivity().getApplicationContext(),
+                                "Device HotSpot is Not Turned Off", Toast.LENGTH_SHORT).show();
+                        check = true;
+                        image.setImageResource(R.drawable.ic_tethering_on);
+                        connected.setText("Hotspot on");
+                    }
+                }
+            }
+        });
+        //final Switch mButton = (Switch) rootView.findViewById(R.id.hotspot_toggle);
+
         if (hotUtil.isWifiApEnabled()) {
-            mButton.setChecked(true);
+            check = true;
+            image.setImageResource(R.drawable.ic_tethering_on);
+            connected.setText("Hotspot on");
+        } else {
+            check = false;
+            image.setImageResource(R.drawable.ic_wifi_tethering);
+            connected.setText("Hotspot off");
         }
 
-        ImageView refresh = (ImageView) rootView.findViewById(R.id.refresh);
+        /*ImageView refresh = (ImageView) rootView.findViewById(R.id.refresh);
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("click", "clicked");
-                if (mButton.isChecked()) {
+                if (check) {
                     //int num = countNumMac();
                     getListOfConnectedDevice();
                     connected.setText(connection);
@@ -61,9 +108,9 @@ public class Hotspot extends Fragment {
                     connected.setText("Hotspot off");
                 }
             }
-        });
+        });*/
 
-        mButton.setOnClickListener(new View.OnClickListener() {
+        /*mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mButton.isChecked()) {
@@ -84,7 +131,7 @@ public class Hotspot extends Fragment {
                     }
                 }
             }
-        });
+        });*/
         return rootView;
     }
 
@@ -114,7 +161,7 @@ public class Hotspot extends Fragment {
                                     splitted[0]).isReachable(500);
                             if (isReachable) {
                                 connection = ipAddress + "; " + macAddress + "; ";
-                                Log.d("hotspot",connection);
+                                Log.d("hotspot", connection);
                             } else {
                                 connection = "No devices connected";
                                 Log.d("Device Information", connection);
